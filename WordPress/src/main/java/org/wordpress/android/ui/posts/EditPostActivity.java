@@ -46,6 +46,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
+
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.wordpress.android.BuildConfig;
@@ -198,7 +200,8 @@ public class EditPostActivity extends AppCompatActivity implements
         BasicFragmentDialog.BasicDialogNegativeClickInterface,
         PromoDialogClickInterface,
         PostSettingsListDialogFragment.OnPostSettingsDialogFragmentListener,
-        PostDatePickerDialogFragment.OnPostDatePickerDialogListener {
+        PostDatePickerDialogFragment.OnPostDatePickerDialogListener,
+        DefaultHardwareBackBtnHandler {
     public static final String EXTRA_POST_LOCAL_ID = "postModelLocalId";
     public static final String EXTRA_POST_REMOTE_ID = "postModelRemoteId";
     public static final String EXTRA_IS_PAGE = "isPage";
@@ -3536,5 +3539,10 @@ public class EditPostActivity extends AppCompatActivity implements
     @Override
     public SiteModel getSite() {
         return mSite;
+    }
+
+    @Override
+    public void invokeDefaultOnBackPressed() {
+        onBackPressed();
     }
 }
