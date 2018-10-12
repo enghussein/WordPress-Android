@@ -27,6 +27,12 @@ apply plugin: 'io.fabric'
 
 android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
 
+project.ext.react = [
+        entryFile: "index.js"
+]
+
+apply from: "../libs/gutenberg-mobile/node_modules/react-native/react.gradle"
+
 android {
     useLibrary 'org.apache.http.legacy'
 
@@ -50,6 +56,9 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         buildConfigField "boolean", "REVISIONS_ENABLED", "false"
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86'
+        }
     }
 
     flavorDimensions "buildType"
